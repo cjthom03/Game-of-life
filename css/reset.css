@@ -1,0 +1,39 @@
+html, body, div, span, h1, h2, h3, h4, p, a, ol, ul, li, form, label, article, aside, figure, figcaption, footer, header, nav {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-color: inherit;
+  color: inherit;
+  font: inherit;
+}
+
+button:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  width: 100%
+}

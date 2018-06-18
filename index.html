@@ -3,8 +3,51 @@
   <head>
     <meta charset="utf-8">
     <title>Charlie's Game of Life</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/game_style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700" rel="stylesheet">
+    
   </head>
   <body>
+    <main>
+      <div class="background"></div>
+      <div class="game-wrapper">
+        <div class="game">
+          <div class="game-top">
+            <div class="game-board">
+
+            </div>
+            <div class="game-sidebar-options">
+              <div>+</div>
+              <div>?</div>
+            </div>
+          </div>
+          <div class="game-bottom">
+            <div class="game-controls">
+              <div class="game-controls-play">
+                <i class="fas fa-play"></i>
+                <i class="fas fa-pause"></i>
+              </div>
+              <div class="game-controls-speed">
+                <input type="range" name="speed" class="speed-range"
+                min="250" max="1500" value="875">
+              </div>
+              <div class="game-controls-rules">
+                <select class="game-rules" name="rules">
+                  <option value="life">Life</option>
+                  <option value="highlife">Highlife</option>
+                </select>
+              </div>
+            </div>
+            <div class="game-clear">
+              <i class="far fa-trash-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
     <script type="text/javascript" src="scripts/bundle.js"></script>
   </body>
 </html>

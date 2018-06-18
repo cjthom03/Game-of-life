@@ -1,0 +1,78 @@
+.background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #181616;
+  z-index: -1;
+}
+
+.game-wrapper {
+  width: 890px;
+  border: 1px solid white;
+  background-color: #000000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+.game {
+  margin: 20px;
+  margin-bottom: 0;
+}
+
+.game-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-board {
+  width: 800px;
+  height: 560px;
+  border: 1px solid white;
+}
+
+.game-sidebar-options {
+  font-size: 50px;
+}
+
+.game-sidebar-options > div {
+  /* margin-left: 20px; */
+}
+
+.game-bottom {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  font-size: 24px;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.game-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+}
+
+.game-controls-play i:first-child {
+  margin-right: 15px;
+}
+
+.game-controls-speed {
+  width: 40%;
+}
+
+.speed-range {
+  width: 100%;
+}
+
+.game-rules {
+  transform: translate(0%, -20%);
+      width: 90px;
+}
