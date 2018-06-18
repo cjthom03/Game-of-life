@@ -53,9 +53,10 @@ Additional scripts may be created as code is written and refactored.
 This project is meant to be conceptualized and planned over a weekend, and then coded over 20-30 hours during the following week.
 
 **Before Day 1 (over the weekend):**
-- [ ] Configure Webpack and get it up an running
-- [ ] Create basic file structure
-- [ ] Build the basic elements in `index.html`
+- [x] Configure Webpack and get it up an running
+- [x] Create basic file structure
+- [x] Build the basic elements in `index.html`
+- [x] Complete basic styling of initialized DOM elements
 
 **Day 1:** Focus on the basic implementation of the game.
 - [ ] User can click to start the game

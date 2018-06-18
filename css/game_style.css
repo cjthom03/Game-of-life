@@ -31,17 +31,20 @@
 }
 
 .game-board {
-  width: 800px;
+  min-width: 800px;
+  max-width: 800px;
   height: 560px;
   border: 1px solid white;
+  box-sizing: border-box;
 }
 
 .game-sidebar-options {
-  font-size: 50px;
+  font-size: 28px;
+  text-align: right;
 }
 
-.game-sidebar-options > div {
-  /* margin-left: 20px; */
+.game-sidebar-options > i {
+  margin-bottom: 15px;
 }
 
 .game-bottom {
@@ -62,6 +65,10 @@
 
 .game-controls-play i:first-child {
   margin-right: 15px;
+}
+
+i:hover {
+  transform: scale(1.1);
 }
 
 .game-controls-speed {
