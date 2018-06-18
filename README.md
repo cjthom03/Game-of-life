@@ -28,10 +28,10 @@ In Charlie's Life, users will be able to:
 Charlie's Game will be a single-screen application with a very simple design and UI. The game will consist of a main simulation area, containing around 7,500 cells. The user will click on this area to begin the game.
 
 Controls along the bottom of the simulation area will allow the user to pause/play the simulation, speed up or slow down the simulation, toggle between Life and Highlife rules for the game, or clear the board.
-![Game of Life - Main](assets/GameOfLife_Main.png)
+![Game of Life - Main](Assets/GameOfLife_Main.png)
 
 Controls in the top right of the screen will allow the user to toggle one of two expandable sidebars. The first, toggled with a '+' icon, allows the use to add live cells to the board: randomly, in a full row, in a full column, or in various pre-constructed shapes - gliders, guns, and spaceships. The second sidebar, toggled with a '?' icon, will explain the game and various controls to the user.
-![Game of Life - Sidebar](assets/GameOfLife_Sidebar.png)
+![Game of Life - Sidebar](Assets/GameOfLife_Sidebar.png)
 
 ## Technologies and Architecture
 This project will be implemented with the following technologies:
