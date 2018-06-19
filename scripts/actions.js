@@ -4,6 +4,7 @@ export const setEventListeners = game => {
   addButtonEvent('#pause', game.pause.bind(game));
   addButtonEvent('#play', game.play.bind(game));
   addButtonEvent('#clear', game.clearBoard.bind(game));
+  addButtonEvent('#toggle-sidebar', toggleSidebar);
 };
 
 
@@ -29,4 +30,25 @@ const startButtonEvents = game => {
 const addButtonEvent = (selector, callback, type = 'click') => {
   document.querySelector(selector)
     .addEventListener(type, callback);
+};
+
+const toggleSidebar = () => {
+  let sidebar = document.querySelector('.sidebar');
+  let button = document.querySelector('#toggle-sidebar');
+  sidebar.classList.remove('hide');
+  if([...sidebar.classList].includes('slideInLeft')) {
+    sidebar.classList.remove('slideInLeft');
+    sidebar.classList.add('slideOutLeft');
+  } else {
+    sidebar.classList.remove('slideOutLeft');
+    sidebar.classList.add('slideInLeft');
+  }
+
+  if([...button.classList].includes('fa-plus')) {
+    button.classList.remove('fa-plus');
+    button.classList.add('fa-chevron-circle-left');
+  } else {
+    button.classList.remove('fa-chevron-circle-left');
+    button.classList.add('fa-plus');
+  }
 };
