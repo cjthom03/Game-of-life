@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   context: __dirname,
-  entry: "./scripts/game.js",
+  entry: "./scripts/index.js",
   output: {
     path: path.resolve(__dirname, 'scripts'),
     filename: "bundle.js"

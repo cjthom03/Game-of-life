@@ -14,6 +14,14 @@
   <body>
     <main>
       <div class="background"></div>
+      <div class="title-wrapper">
+        <div class="title animated fadeInDown">
+          <span>Charlie's Life</span>
+        </div>
+        <div class="start animated fadeInDown" id="start">
+          <button type="button" name="start">Click here to start</button>
+        </div>
+      </div>
       <div class="game-wrapper">
         <div class="game">
           <div class="game-top">
@@ -28,12 +36,12 @@
           <div class="game-bottom">
             <div class="game-controls">
               <div class="game-controls-play">
-                <i class="fas fa-play"></i>
-                <i class="fas fa-pause"></i>
+                <i class="fas fa-play" id="play"></i>
+                <i class="fas fa-pause" id="pause"></i>
               </div>
               <div class="game-controls-speed">
                 <input type="range" name="speed" class="speed-range"
-                min="250" max="1500" value="875">
+                min="75" max="1000" value="300">
               </div>
               <div class="game-controls-rules">
                 <select class="game-rules" name="rules">
@@ -43,7 +51,7 @@
               </div>
             </div>
             <div class="game-clear">
-              <i class="far fa-trash-alt"></i>
+              <i class="far fa-trash-alt" id="clear"></i>
             </div>
           </div>
         </div>
