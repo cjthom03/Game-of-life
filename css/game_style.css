@@ -150,12 +150,43 @@ i:hover {
 
 .sidebar-inner {
   padding: 20px;
+  padding-top: 10px;
 }
 
 .sidebar i {
+  position: relative;
   display: block;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 39px;
+  padding: 10px 7px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+}
+
+.sidebar i > div {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 30%;
+  left: 105%;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  background: white;
+  border-radius: 6px;
+  color: black;
+  padding: 5px 10px;
+  white-space: nowrap;
+  transition:visibility 0.3s linear,opacity 0.3s linear;
+}
+
+.sidebar i:hover > div {
+  visibility: visible;
+  opacity: 1;
+}
+
+.sidebar .active-action {
+  border: 2px solid #fff;
 }
 
 .sidebar.hide{

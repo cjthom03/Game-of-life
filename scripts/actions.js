@@ -1,10 +1,13 @@
+import SideBarActions from './sidebar_actions';
+import { addButtonEvent } from './utils';
 
 export const setEventListeners = game => {
   startButtonEvents(game);
-  addButtonEvent('#pause', game.pause.bind(game));
-  addButtonEvent('#play', game.play.bind(game));
-  addButtonEvent('#clear', game.clearBoard.bind(game));
+  addButtonEvent('#pause', () => game.pause() );
+  addButtonEvent('#play', () => game.play() );
+  addButtonEvent('#clear', () => game.clearBoard() );
   addButtonEvent('#toggle-sidebar', toggleSidebar);
+  let sidebar = new SideBarActions(game);
 };
 
 
@@ -25,11 +28,6 @@ const startButtonEvents = game => {
 
     game.start();
   });
-};
-
-const addButtonEvent = (selector, callback, type = 'click') => {
-  document.querySelector(selector)
-    .addEventListener(type, callback);
 };
 
 const toggleSidebar = () => {

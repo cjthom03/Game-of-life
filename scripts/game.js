@@ -3,8 +3,9 @@ import Board from './board';
 class Game {
   constructor(){
     this.board = new Board;
+    this.domBoard = document.querySelector('#board');
     this.speed = 300;
-
+    this.currentEvent = null;
   }
 
   start(){
@@ -34,7 +35,13 @@ class Game {
   }
 
   randomSeeds() {
-    this.board.randomClusters();
+    return this.board.randomClusters();
+  }
+
+  setEvent(eventName) {
+    this.domBoard.removeEventListener('click', this.currentEvent);
+    this.currentEvent = (e) => this.board.getEvent(eventName, e.target);
+    this.domBoard.addEventListener('click', this.currentEvent);
   }
 
 }

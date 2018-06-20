@@ -1,3 +1,4 @@
+import * as BoardActions from './board_actions';
 import Cell from './cell';
 
 class Board {
@@ -6,6 +7,23 @@ class Board {
     this.cols = 100;
     this.grid = [];
     this.createBoard();
+  }
+
+  getEvent(eventName, targetCell) {
+    switch(eventName) {
+      case "#add-row":
+        return BoardActions.addRow(targetCell, this);
+      case "#add-col":
+        return BoardActions.addCol(targetCell, this);
+      case "#glider":
+        return BoardActions.addShape(BoardActions.GliderPos, targetCell, this);
+      case "#gun":
+        return BoardActions.addShape(BoardActions.GunPos, targetCell, this);
+      case "#spaceship":
+        return BoardActions.addShape(BoardActions.SpacePos, targetCell, this);
+      default:
+        return;
+    }
   }
 
   createBoard() {
@@ -30,10 +48,8 @@ class Board {
 
   randomClusters() {
     let numCenterNodes = Math.floor((Math.random() * 25) + 25);
-    let centerNodes = [];
-    let clusterNodes = [];
-    let minDis = 20;
-    let maxDis = 10;
+    let centerNodes = [], clusterNodes = [];
+    let minDis = 20, maxDis = 10;
 
     for (let i = 0; i < numCenterNodes; i++) {
       let x = Math.floor(Math.random() * 70);
@@ -72,7 +88,11 @@ class Board {
 
     randomNodes.forEach(node => {
       this.grid[node.row][node.col].state = 1;
+      let currentCell = document.querySelector(`[data-pos="${node.row},${node.col}"`);
+      currentCell.classList.add('alive')
     });
+
+    return randomNodes;
 
   }
 
@@ -80,28 +100,22 @@ class Board {
     const allStates = [];
     this.grid.forEach( (row) => {
       let rowOfStates = [];
-      row.forEach((cell) => {
-        rowOfStates.push(cell.state);
-      });
+      row.forEach((cell) => { rowOfStates.push(cell.state); });
       allStates.push(rowOfStates);
     });
     return allStates;
   }
 
   setStates(cells, state) {
-    cells.forEach(cell => {
-      cell.state = state;
-    });
+    cells.forEach(cell => { cell.state = state; });
   }
 
   updateBoard() {
     let oldGrid = this.getStates();
 
-
     this.grid.forEach( (row, i) => {
       row.forEach( (cell, j) => {
         cell.updateState(oldGrid, this.rows, this.cols);
-
 
         if(cell.state !== oldGrid[i][j]) {
           let currentCell = document.querySelector(`[data-pos="${cell.row},${cell.col}"`);
@@ -112,9 +126,7 @@ class Board {
   }
 
   clearBoard() {
-    this.grid.forEach(row => {
-      this.setStates(row, 0);
-    });
+    this.grid.forEach(row => { this.setStates(row, 0); });
 
     document.querySelectorAll('.alive').forEach(cell => {
       cell.classList.remove('alive');
