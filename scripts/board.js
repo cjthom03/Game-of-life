@@ -2,11 +2,12 @@ import * as BoardActions from './board_actions';
 import Cell from './cell';
 
 class Board {
-  constructor() {
+  constructor(rules) {
     this.rows = 70;
     this.cols = 100;
     this.grid = [];
     this.createBoard();
+    this.rules = rules;
   }
 
   getEvent(eventName, targetCell) {
@@ -35,7 +36,7 @@ class Board {
       for (let j = 0; j < this.cols; j++) {
         const newLi = document.createElement("li");
         newLi.classList.add('cell');
-        newLi.setAttribute('data-pos', [i, j]);
+        newLi.id = `${i},${j}`;
         newUl.appendChild(newLi);
 
         const cell = new Cell(i, j);
@@ -88,8 +89,8 @@ class Board {
 
     randomNodes.forEach(node => {
       this.grid[node.row][node.col].state = 1;
-      let currentCell = document.querySelector(`[data-pos="${node.row},${node.col}"`);
-      currentCell.classList.add('alive')
+      let currentCell = document.getElementById(`${node.row},${node.col}`);
+      currentCell.classList.add('alive');
     });
 
     return randomNodes;
@@ -115,10 +116,10 @@ class Board {
 
     this.grid.forEach( (row, i) => {
       row.forEach( (cell, j) => {
-        cell.updateState(oldGrid, this.rows, this.cols);
+        cell.updateState(oldGrid, this.rows, this.cols, this.rules);
 
         if(cell.state !== oldGrid[i][j]) {
-          let currentCell = document.querySelector(`[data-pos="${cell.row},${cell.col}"`);
+          let currentCell = document.getElementById(`${cell.row},${cell.col}`);
           cell.state === 1 ? currentCell.classList.add('alive') : currentCell.classList.remove('alive');
         }
       });

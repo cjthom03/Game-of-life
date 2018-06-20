@@ -15,20 +15,20 @@ export const SpacePos = [
 
 
 export const addRow = (targetCell, board) => {
-  let row = Number(targetCell.getAttribute('data-pos').split(',')[0]);
+  let row = Number(targetCell.id.split(',')[0]);
   let cells = board.grid[row];
   bringThemToLife(board, cells);
 };
 
 export const addCol = (targetCell, board) => {
-  let col = Number(targetCell.getAttribute('data-pos').split(',')[1]);
+  let col = Number(targetCell.id.split(',')[1]);
   let cells = [];
   board.grid.forEach(row => cells.push(row[col]));
   bringThemToLife(board, cells);
 };
 
 export const addShape = (positions, targetCell, board) => {
-  let pos = targetCell.getAttribute('data-pos').split(',');
+  let pos = targetCell.id.split(',');
   let row = Number(pos[0]), col = Number(pos[1]);
   let cells = [];
 
@@ -47,7 +47,7 @@ const bringThemToLife = (board, cells) => {
   board.setStates(cells, 1);
 
   cells.forEach(cell => {
-    let currentCell = document.querySelector(`[data-pos="${cell.row},${cell.col}"]`);
+    let currentCell = document.getElementById(`${cell.row},${cell.col}`);
     currentCell.classList.add('alive');
   });
 };

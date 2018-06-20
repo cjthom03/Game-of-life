@@ -1,15 +1,15 @@
-import { addButtonEvent } from './utils';
+import { addEvent } from './utils';
 
 class SidebarActions {
   constructor(game) {
     this.game = game;
     this.currentEvent = null;
-    addButtonEvent('#seeds', () => game.randomSeeds());
-    addButtonEvent('#add-row', () => this.setEvent('#add-row'));
-    addButtonEvent('#add-col', () => this.setEvent('#add-col'));
-    addButtonEvent('#glider', () => this.setEvent('#glider'));
-    addButtonEvent('#gun', () => this.setEvent('#gun'));
-    addButtonEvent('#spaceship', () => this.setEvent('#spaceship'));
+    addEvent('#seeds', () => game.randomSeeds());
+    addEvent('#add-row', () => this.setEvent('#add-row'));
+    addEvent('#add-col', () => this.setEvent('#add-col'));
+    addEvent('#glider', () => this.setEvent('#glider'));
+    addEvent('#gun', () => this.setEvent('#gun'));
+    addEvent('#spaceship', () => this.setEvent('#spaceship'));
   }
 
   setEvent(eventName) {

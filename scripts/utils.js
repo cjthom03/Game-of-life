@@ -1,4 +1,4 @@
-export const addButtonEvent = (selector, callback, type = 'click') => {
+export const addEvent = (selector, callback, type = 'click') => {
   document.querySelector(selector)
     .addEventListener(type, callback);
 };

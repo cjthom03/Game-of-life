@@ -2,10 +2,16 @@ import Board from './board';
 
 class Game {
   constructor(){
-    this.board = new Board;
-    this.domBoard = document.querySelector('#board');
-    this.speed = 300;
     this.currentEvent = null;
+    this.speed = document.querySelector('#speed').value;
+    this.domBoard = document.querySelector('#board');
+
+    let rules = document.querySelector('#rules').value;
+    this.board = new Board(rules);
+  }
+
+  changeRules(newRule) {
+    this.board.rules = newRule;
   }
 
   start(){

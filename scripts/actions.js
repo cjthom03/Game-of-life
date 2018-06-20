@@ -1,12 +1,14 @@
 import SideBarActions from './sidebar_actions';
-import { addButtonEvent } from './utils';
+import { addEvent } from './utils';
 
 export const setEventListeners = game => {
   startButtonEvents(game);
-  addButtonEvent('#pause', () => game.pause() );
-  addButtonEvent('#play', () => game.play() );
-  addButtonEvent('#clear', () => game.clearBoard() );
-  addButtonEvent('#toggle-sidebar', toggleSidebar);
+  addEvent('#pause', () => game.pause() );
+  addEvent('#play', () => game.play() );
+  addEvent('#clear', () => game.clearBoard() );
+  addEvent('#toggle-sidebar', () => toggleSidebar());
+  addEvent('#speed', (e) => changeSpeed(e, game), 'change');
+  addEvent('#rules', (e) => changeRules(e, game), 'change');
   let sidebar = new SideBarActions(game);
 };
 
@@ -49,4 +51,14 @@ const toggleSidebar = () => {
     button.classList.remove('fa-chevron-circle-left');
     button.classList.add('fa-plus');
   }
+};
+
+const changeSpeed = (e, game) => {
+  game.speed = e.target.value;
+  game.pause();
+  game.play();
+};
+
+const changeRules = (e, game) => {
+  game.changeRules(e.target.value);
 };
