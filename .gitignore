@@ -1,6 +1,5 @@
 /Sketch
 node_modules/*
-!node_modules/animate.css
 bundle.js.map
 .byebug_history
 .DS_Store
