@@ -55,8 +55,10 @@ const toggleSidebar = () => {
 
 const changeSpeed = (e, game) => {
   game.speed = e.target.value;
-  game.pause();
-  game.play();
+  if(game.playInterval){
+    game.pause();
+    game.play();
+  }
 };
 
 const changeRules = (e, game) => {
