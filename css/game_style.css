@@ -88,6 +88,36 @@
   background-color: grey;
 }
 
+.cell.alive.red {
+  background-color: red;
+  box-shadow: inset 0px 0px 1px 1px #610000;
+}
+
+.cell.alive.blue {
+  background-color: #00b6ff;
+  box-shadow: inset 0px 0px 1px 1px #003f90;
+}
+
+.cell.alive.green {
+  background-color: #00fd00;
+  box-shadow: inset 0px 0px 1px 1px #005800;
+}
+
+.cell.alive.orange {
+  background-color: orange;
+  box-shadow: inset 0px 0px 1px 1px #714900;
+}
+
+.cell.alive.purple {
+  background-color: #e600ff;
+  box-shadow: inset 0px 0px 1px 1px #4a0052;
+}
+
+.cell.alive.yellow {
+  background-color: yellow;
+  box-shadow: inset 0px 0px 1px 1px #6b6b00;
+}
+
 .game-sidebar-options {
   font-size: 28px;
   text-align: right;

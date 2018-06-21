@@ -44,10 +44,12 @@ export const addShape = (positions, targetCell, board) => {
 };
 
 const bringThemToLife = (board, cells) => {
-  board.setStates(cells, 1);
 
   cells.forEach(cell => {
+    let newState = 1;
+    if(board.rules === 'brightlife') newState += Math.floor((Math.random() * 6) + 1);
+    cell.state = newState;
     let currentCell = document.getElementById(`${cell.row},${cell.col}`);
-    currentCell.classList.add('alive');
+    cell.updateClass(currentCell);
   });
 };

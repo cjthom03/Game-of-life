@@ -273,54 +273,56 @@ var Board = function () {
     value: function randomClusters() {
       var _this = this;
 
-      var numCenterNodes = Math.floor(Math.random() * 25 + 25);
-      var centerNodes = [],
-          clusterNodes = [];
+      var numCenterCells = Math.floor(Math.random() * 25 + 25);
+      var centerCells = [],
+          clusterCells = [];
       var minDis = 20,
           maxDis = 10;
 
-      for (var i = 0; i < numCenterNodes; i++) {
+      for (var i = 0; i < numCenterCells; i++) {
         var x = Math.floor(Math.random() * 70);
         var y = Math.floor(Math.random() * 100);
-        var validNode = true;
+        var validCell = true;
 
-        for (var j = 0; j < centerNodes.length; j++) {
-          var xDiff = Math.abs(centerNodes[j].row - x) <= minDis;
-          var yDiff = Math.abs(centerNodes[j].col - y) <= minDis;
+        for (var j = 0; j < centerCells.length; j++) {
+          var xDiff = Math.abs(centerCells[j].row - x) <= minDis;
+          var yDiff = Math.abs(centerCells[j].col - y) <= minDis;
           if (xDiff && yDiff) {
-            validNode = false;
+            validCell = false;
             break;
           }
         }
 
-        if (validNode) {
-          var centerNode = this.grid[x][y];
-          centerNodes.push(centerNode);
-          var numClusterNodes = Math.floor(Math.random() * 10 + 20);
-          for (var k = 0; k < numClusterNodes; k++) {
+        if (validCell) {
+          var centerCell = this.grid[x][y];
+          centerCells.push(centerCell);
+          var numClusterCells = Math.floor(Math.random() * 10 + 20);
+          for (var k = 0; k < numClusterCells; k++) {
             var a = Math.floor(Math.random() * 10 + 1) * (Math.random() < 0.5 ? -1 : 1);
             var b = Math.floor(Math.random() * 10 + 1) * (Math.random() < 0.5 ? -1 : 1);
 
-            var newX = (centerNode.row + a) % this.rows;
+            var newX = (centerCell.row + a) % this.rows;
             newX = newX < 0 ? newX + this.rows : newX;
 
-            var newY = (centerNode.col + b) % this.cols;
+            var newY = (centerCell.col + b) % this.cols;
             newY = newY < 0 ? newY + this.cols : newY;
 
-            clusterNodes.push(this.grid[newX][newY]);
+            clusterCells.push(this.grid[newX][newY]);
           }
         }
       }
 
-      var randomNodes = centerNodes.concat(clusterNodes);
+      var randomCells = centerCells.concat(clusterCells);
 
-      randomNodes.forEach(function (node) {
-        _this.grid[node.row][node.col].state = 1;
-        var currentCell = document.getElementById(node.row + ',' + node.col);
-        currentCell.classList.add('alive');
+      randomCells.forEach(function (cell) {
+        var newState = 1;
+        if (_this.rules === 'brightlife') newState += Math.floor(Math.random() * 6 + 1);
+        _this.grid[cell.row][cell.col].state = newState;
+        var currentCell = document.getElementById(cell.row + ',' + cell.col);
+        cell.updateClass(currentCell);
       });
 
-      return randomNodes;
+      return randomCells;
     }
   }, {
     key: 'getStates',
@@ -355,7 +357,7 @@ var Board = function () {
 
           if (cell.state !== oldGrid[i][j]) {
             var currentCell = document.getElementById(cell.row + ',' + cell.col);
-            cell.state === 1 ? currentCell.classList.add('alive') : currentCell.classList.remove('alive');
+            cell.updateClass(currentCell);
           }
         });
       });
@@ -432,11 +434,13 @@ var addShape = exports.addShape = function addShape(positions, targetCell, board
 };
 
 var bringThemToLife = function bringThemToLife(board, cells) {
-  board.setStates(cells, 1);
 
   cells.forEach(function (cell) {
+    var newState = 1;
+    if (board.rules === 'brightlife') newState += Math.floor(Math.random() * 6 + 1);
+    cell.state = newState;
     var currentCell = document.getElementById(cell.row + ',' + cell.col);
-    currentCell.classList.add('alive');
+    cell.updateClass(currentCell);
   });
 };
 
@@ -462,6 +466,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var offsets = [[-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0]];
 
+var cellClasses = {
+  2: "orange",
+  3: "blue",
+  4: "red",
+  5: "yellow",
+  6: "green",
+  7: "purple"
+};
+
 var Cell = function () {
   function Cell(row, col) {
     var state = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
@@ -474,11 +487,11 @@ var Cell = function () {
   }
 
   _createClass(Cell, [{
-    key: 'updateState',
+    key: "updateState",
     value: function updateState(oldGrid, numRows, numCols, rule) {
       var that = this;
       var numAlive = 0;
-      var stateSum = 0;
+      var neighborStates = [];
       offsets.forEach(function (pos) {
         var x = (that.row + pos[0]) % numRows;
         var y = (that.col + pos[1]) % numCols;
@@ -486,39 +499,65 @@ var Cell = function () {
         y = y < 0 ? y + numCols : y;
         if (oldGrid[x][y] > 0) {
           numAlive++;
-          stateSum = stateSum + oldGrid[x][y];
+          neighborStates.push(oldGrid[x][y]);
         }
       });
 
       switch (rule) {
         case 'life':
           return this.state = this.lifeRules(numAlive);
-        case 'highlife':
-          return this.state = this.highlifeRules(numAlive);
+        case 'brightlife':
+          var nextState = this.getNextState(neighborStates);
+          return this.state = this.brightlifeRules(numAlive, nextState);
         default:
           this.state = this.lifeRules(numAlive);
       }
     }
   }, {
-    key: 'lifeRules',
-    value: function lifeRules(numAlive) {
-      if (numAlive < 2 || numAlive > 3) {
-        return 0;
-      } else if (numAlive === 3) {
-        return 1;
-      } else {
-        return this.state;
+    key: "getNextState",
+    value: function getNextState(neighborStates) {
+      var sortedStates = neighborStates.sort(function (a, b) {
+        return a - b;
+      });
+      for (var i = 0; i < sortedStates.length; i++) {
+        if (sortedStates[i] === sortedStates[i + 1]) return sortedStates[i];
       }
+      return 1;
     }
   }, {
-    key: 'highlifeRules',
-    value: function highlifeRules(numAlive) {
+    key: "lifeRules",
+    value: function lifeRules(numAlive) {
+      var newState = this.state;
       if (numAlive < 2 || numAlive > 3) {
-        return 0;
-      } else if (numAlive === 3 || numAlive === 6) {
-        return 1;
-      } else {
-        return this.state;
+        newState = 0;
+      } else if (numAlive === 3) {
+        newState = 1;
+      }
+
+      if (newState > 1) newState = 1;
+      return newState;
+    }
+  }, {
+    key: "brightlifeRules",
+    value: function brightlifeRules(numAlive, nextState) {
+      var newState = this.state;
+      if (numAlive < 2 || numAlive > 3) {
+        newState = 0;
+      } else if (numAlive === 3) {
+        newState = nextState;
+      }
+
+      if (newState === 1) newState += Math.floor(Math.random() * 6 + 1);
+      return newState;
+    }
+  }, {
+    key: "updateClass",
+    value: function updateClass(domCell) {
+      domCell.classList.remove('alive', 'red', 'blue', 'green', 'orange', 'purple', 'yellow');
+
+      if (this.state >= 1) {
+        domCell.classList.add('alive');
+        if (cellClasses[this.state]) domCell.classList.add(cellClasses[this.state]);
       }
     }
   }]);
