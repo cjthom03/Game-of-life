@@ -23,9 +23,9 @@ In Charlie's Life, users are able to:
 * Access a side bar of pre-determined shapes that can be added to the board
 * Access a pop-up with more information about the game & controls
 
-### Basic Algorithm for the Game of Life
+### Basic Algorithm for the Game of Life & Color Domination
 
-    ```Javascript
+```javascript
     // Basic Rules: 1 = alive, 0 = dead
     lifeRules(numAlive) {
       let newState = this.state;
@@ -65,11 +65,52 @@ In Charlie's Life, users are able to:
       }
       return 1;
     }
-    ```
+```
 
 ### Random Clustering
 
-### Color Domination
+
+```javascript
+    randomClusters() {
+      let numCenterCells = Math.floor((Math.random() * 25) + 25);
+      let centerCells = [], clusterCells = [];
+      let minDis = 20, maxDis = 10;
+
+      for (let i = 0; i < numCenterCells; i++) {
+        let x = Math.floor(Math.random() * 70);
+        let y = Math.floor(Math.random() * 100);
+        let validCell = true;
+
+        for (let j = 0; j < centerCells.length; j++) {
+          let xDiff = Math.abs(centerCells[j].row - x) <= minDis;
+          let yDiff = Math.abs(centerCells[j].col - y) <= minDis;
+          if(xDiff && yDiff){
+            validCell = false;
+            break;
+          }
+        }
+
+        if(validCell) {
+          let centerCell = this.grid[x][y];
+          centerCells.push(centerCell);
+          let numClusterCells = Math.floor((Math.random() * 10) + 20);
+          for (let k = 0; k < numClusterCells ; k++) {
+            let a = Math.floor((Math.random() * 10) + 1) * (Math.random() < 0.5 ? -1 : 1);
+            let b = Math.floor((Math.random() * 10) + 1) * (Math.random() < 0.5 ? -1 : 1);
+
+            let newX = (centerCell.row + a) % this.rows;
+            newX = newX < 0 ? newX + this.rows : newX;
+
+            let newY = (centerCell.col + b) % this.cols;
+            newY = newY < 0 ? newY + this.cols : newY;
+
+            clusterCells.push(this.grid[newX][newY]);
+          }
+        }
+      }
+```
+
+
 
 
 ## Design
