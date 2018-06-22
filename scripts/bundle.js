@@ -128,6 +128,9 @@ var setEventListeners = exports.setEventListeners = function setEventListeners(g
   (0, _utils.addEvent)('#rules', function (e) {
     return changeRules(e, game);
   }, 'change');
+  (0, _utils.addEvent)('#display-help', function () {
+    return displayHelp();
+  });
   var sidebar = new _sidebar_actions2.default(game);
 };
 
@@ -184,6 +187,34 @@ var changeSpeed = function changeSpeed(e, game) {
 
 var changeRules = function changeRules(e, game) {
   game.changeRules(e.target.value);
+};
+
+var displayHelp = function displayHelp() {
+  var background = document.getElementById('modal-background');
+  var modal = document.getElementById('modal-child');
+  var closeModal = document.getElementById('close-about-container');
+
+  background.classList.remove('hide');
+  modal.classList.remove('hide');
+
+  (0, _utils.addEvent)('#modal-background', function () {
+    return hideHelp(background, modal, closeModal);
+  });
+  (0, _utils.addEvent)('#close-about-container', function () {
+    return hideHelp(background, modal, closeModal);
+  });
+};
+
+var hideHelp = function hideHelp(background, modal, closeModal) {
+  background.classList.add('hide');
+  modal.classList.add('hide');
+
+  background.removeEventListener('click', function () {
+    return hideHelp();
+  });
+  closeModal.removeEventListener('click', function () {
+    return hideHelp();
+  });
 };
 
 /***/ }),

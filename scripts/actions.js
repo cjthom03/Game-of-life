@@ -8,6 +8,7 @@ export const setEventListeners = game => {
   addEvent('#clear', () => game.clearBoard() );
   addEvent('#speed', (e) => changeSpeed(e, game), 'change');
   addEvent('#rules', (e) => changeRules(e, game), 'change');
+  addEvent('#display-help', () => displayHelp());
   let sidebar = new SideBarActions(game);
 };
 
@@ -63,4 +64,25 @@ const changeSpeed = (e, game) => {
 
 const changeRules = (e, game) => {
   game.changeRules(e.target.value);
+};
+
+const displayHelp = () => {
+  let background = document.getElementById('modal-background');
+  let modal = document.getElementById('modal-child');
+  let closeModal = document.getElementById('close-about-container');
+
+  background.classList.remove('hide');
+  modal.classList.remove('hide');
+
+  addEvent('#modal-background', () => hideHelp(background, modal, closeModal));
+  addEvent('#close-about-container', () => hideHelp(background, modal, closeModal));
+
+};
+
+const hideHelp = (background, modal, closeModal) => {
+  background.classList.add('hide');
+  modal.classList.add('hide');
+
+  background.removeEventListener('click', () => hideHelp());
+  closeModal.removeEventListener('click', () => hideHelp());
 };

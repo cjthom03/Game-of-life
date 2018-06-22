@@ -1,30 +1,39 @@
+.modal-background.hide, .modal-child.hide {
+  display: none;
+}
+
 .modal-background {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #181616;
+  background-color: #404040;
   opacity: 0.75;
   z-index: 2;
+  cursor: pointer;
 }
 
 .modal-child{
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 48%;
+  left: 48.75%;
   transform: translate(-50%, -50%);
   color: white;
   font-family: 'Roboto', sans-serif;
-  height: 50%;
-  width: 50%;
-  background-color: black;
+  height: 48%;
+  width: 37%;
+  background-color: #080808;
   z-index: 3;
+  overflow: scroll;
+  border-radius: 2px;
+  box-shadow: 0px 0px 6px 10px black;
 }
 
 .about-container {
   position: relative;
   padding: 15px 25px;
+  padding-bottom: 0;
 }
 
 .about-header {
@@ -34,7 +43,8 @@
 
 .about-subheader {
   margin-bottom: 3px;
-  font-size: 21px;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .about-subheader::after {
@@ -42,6 +52,21 @@
   border: 1px solid #797979;
   width: 100%;
   display: block;
+  margin-bottom: 5px;
+}
+
+.about-container ul {
+  list-style: square inside;
+  padding: 0 15px;
+}
+
+.about-container ul + p {
+  margin-top: 10px;
+}
+
+.about-container a {
+  color: #468bd6;
+  text-decoration: underline;
 }
 
 section {
@@ -52,6 +77,22 @@ p {
   margin-bottom: 10px;
 }
 
+.about-control {
+  display: flex;
+  margin: 25px 0;
+}
+
+.about-control i {
+  font-size: 24px;
+  width: 29px;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.about-control + p {
+  margin: 25px 0;
+}
+
 .close-about-container {
   font-size: 23px;
   position: absolute;
@@ -59,7 +100,6 @@ p {
   right: 8px;
   cursor: pointer;
 }
-
 
 .background {
   position: fixed;
