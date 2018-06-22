@@ -137,7 +137,7 @@ var setEventListeners = exports.setEventListeners = function setEventListeners(g
 var startButtonEvents = function startButtonEvents(game) {
   var startButton = document.querySelector('#start');
 
-  startButton.addEventListener('click', function () {
+  startButton.addEventListener('click', function (e) {
     var parent = startButton.parentElement;
     startButton.addEventListener('animationend', function () {
       parent.classList.add('hide');
@@ -145,13 +145,14 @@ var startButtonEvents = function startButtonEvents(game) {
 
     var children = document.querySelectorAll('.title-wrapper > div');
     children.forEach(function (child) {
-      child.classList.remove('animated', 'fadeInDown');
       child.classList.add('animated', 'fadeOutUp');
     });
 
     (0, _utils.addEvent)('#toggle-sidebar', function () {
       return toggleSidebar();
     });
+
+    changeRules(e, game);
     game.start();
   });
 };

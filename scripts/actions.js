@@ -16,7 +16,7 @@ export const setEventListeners = game => {
 const startButtonEvents = game => {
   const startButton = document.querySelector('#start');
 
-  startButton.addEventListener('click', () => {
+  startButton.addEventListener('click', (e) => {
     let parent = startButton.parentElement;
     startButton.addEventListener('animationend', () => {
       parent.classList.add('hide');
@@ -24,11 +24,12 @@ const startButtonEvents = game => {
 
     let children = document.querySelectorAll('.title-wrapper > div');
     children.forEach(child => {
-      child.classList.remove('animated','fadeInDown');
       child.classList.add('animated','fadeOutUp');
     });
 
     addEvent('#toggle-sidebar', () => toggleSidebar());
+
+    changeRules(e, game);
     game.start();
   });
 };

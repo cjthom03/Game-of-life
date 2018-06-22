@@ -115,7 +115,7 @@ p {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-60%, -150%);
+  transform: translate(-55%, -90%);
   color: white;
   font-family: 'Roboto', sans-serif;
   z-index: 1;
@@ -130,19 +130,45 @@ p {
 }
 
 .title {
-  font-size: 62px;
+  font-size: 72px;
   margin-bottom: 10px;
 }
 
-.start {
-  padding: 5px 14px;
-  background-color: #2d2d2d;
-  border-radius: 6px;
+.title-choose{
+  margin-bottom: 20px;
+  margin-top: 25px;
 }
 
-.start:hover {
-  transform: scale(1.02);
-  background-color: #484141;
+.start {
+  display: flex;
+}
+
+.start div{
+  display: flex;
+  justify-content: center;
+  padding: 11px 19px;
+  background-color: #000000;
+  border-radius: 6px;
+  border: 1px solid #525252;
+  font-size: 24px;
+  margin: 0px 25px;
+  width: 270px;
+}
+
+.start div:hover {
+  transform: scale(1.09);
+  background-color: #1d1d1d;
+  border: 1px solid #d8d8d8;
+}
+
+.brightlife button {
+  background: red;
+  background: -webkit-linear-gradient(left, red, orange , yellow, green, cyan, violet);
+  background: -o-linear-gradient(right, red, orange , yellow, green, cyan, violet);
+  background: -moz-linear-gradient(right, red, orange , yellow, green, cyan, violet);
+  background: linear-gradient(to right, red, orange , yellow, green, cyan, violet);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .game-wrapper {
