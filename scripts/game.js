@@ -3,10 +3,10 @@ import Board from './board';
 class Game {
   constructor(){
     this.currentEvent = null;
-    this.speed = document.querySelector('#speed').value;
-    this.domBoard = document.querySelector('#board');
+    this.speed = document.getElementById('speed').value;
+    this.domBoard = document.getElementById('board');
 
-    let rules = document.querySelector('#rules').value;
+    let rules = document.getElementById('rules').value;
     this.board = new Board(rules);
   }
 
@@ -45,6 +45,7 @@ class Game {
   }
 
   setEvent(eventName) {
+    this.domBoard.classList.add('active');
     this.domBoard.removeEventListener('click', this.currentEvent);
     this.currentEvent = (e) => this.board.getEvent(eventName, e.target);
     this.domBoard.addEventListener('click', this.currentEvent);

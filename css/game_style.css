@@ -168,6 +168,10 @@ p {
   justify-content: space-between;
 }
 
+.game-board.active {
+  cursor: crosshair;
+}
+
 .game-board {
   min-width: 800px;
   max-width: 800px;

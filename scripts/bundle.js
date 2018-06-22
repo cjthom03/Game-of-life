@@ -629,10 +629,10 @@ var Game = function () {
     _classCallCheck(this, Game);
 
     this.currentEvent = null;
-    this.speed = document.querySelector('#speed').value;
-    this.domBoard = document.querySelector('#board');
+    this.speed = document.getElementById('speed').value;
+    this.domBoard = document.getElementById('board');
 
-    var rules = document.querySelector('#rules').value;
+    var rules = document.getElementById('rules').value;
     this.board = new _board2.default(rules);
   }
 
@@ -683,6 +683,7 @@ var Game = function () {
     value: function setEvent(eventName) {
       var _this2 = this;
 
+      this.domBoard.classList.add('active');
       this.domBoard.removeEventListener('click', this.currentEvent);
       this.currentEvent = function (e) {
         return _this2.board.getEvent(eventName, e.target);
