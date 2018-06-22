@@ -13,11 +13,11 @@ In this game, cells can have 2 states - alive or dead - and they follow 4 simple
 
 In Charlie's life, users will be allowed to modify some of these rules and force state changes for some of the cells on the grid in order to experiment and play with the game.
 
-## Functionality
+## Functionality and MVP
 
 In Charlie's Life, users will be able to:
 * Start the game (with on click) with a pre-seeded board
-* Pause & re-start the simulation, as well as clear the game of all live cells
+* Pause & re-start the game, as well as clear the game of all live cells
 * Easily change the speed of the game using a slide bar
 * Choose between 'Life' and 'Highlife' implementations of Conway's game
 * Access a side bar of pre-determined shapes that can be added to the board
