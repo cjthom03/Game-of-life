@@ -6,7 +6,6 @@ export const setEventListeners = game => {
   addEvent('#pause', () => game.pause() );
   addEvent('#play', () => game.play() );
   addEvent('#clear', () => game.clearBoard() );
-  addEvent('#toggle-sidebar', () => toggleSidebar());
   addEvent('#speed', (e) => changeSpeed(e, game), 'change');
   addEvent('#rules', (e) => changeRules(e, game), 'change');
   let sidebar = new SideBarActions(game);
@@ -28,6 +27,7 @@ const startButtonEvents = game => {
       child.classList.add('animated','fadeOutUp');
     });
 
+    addEvent('#toggle-sidebar', () => toggleSidebar());
     game.start();
   });
 };

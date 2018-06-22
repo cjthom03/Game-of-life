@@ -122,9 +122,6 @@ var setEventListeners = exports.setEventListeners = function setEventListeners(g
   (0, _utils.addEvent)('#clear', function () {
     return game.clearBoard();
   });
-  (0, _utils.addEvent)('#toggle-sidebar', function () {
-    return toggleSidebar();
-  });
   (0, _utils.addEvent)('#speed', function (e) {
     return changeSpeed(e, game);
   }, 'change');
@@ -149,6 +146,9 @@ var startButtonEvents = function startButtonEvents(game) {
       child.classList.add('animated', 'fadeOutUp');
     });
 
+    (0, _utils.addEvent)('#toggle-sidebar', function () {
+      return toggleSidebar();
+    });
     game.start();
   });
 };
@@ -687,11 +687,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 document.addEventListener('DOMContentLoaded', function () {
   var game = new _game2.default();
-
-  // TEST START
-  window.game = game;
-  // TEST END
-
   (0, _actions.setEventListeners)(game);
 });
 

@@ -15,8 +15,93 @@
   <body>
     <main>
       <div class="background"></div>
+      <div class="modal-background"></div>
+      <div class="modal-child">
+        <div class="about-container">
+          <div class="close-about-container" id="close-about-container">&times</div>
+          <div class="about-header">
+            About Charlie's Life
+          </div>
+          <section class="about-intro">
+            <div class="about-subheader">What is this?</div>
+            <p><em>Charlie's Life</em> is an implementation of a famous cellular automata called <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">"Conways Game of Life"</a>. The game consists of a two-demensional grid of cells that can have one of two states: <strong>Alive</strong> or <strong>Dead</strong>. The state of any given cell can change each round (or 'generation') based on the states of the neighbouring cells.</p>
+            <p>There are only a few simple rules:</p>
+            <ul>
+              <li>Underpopulation - A cell with less than 2 living neighbors will die</li>
+              <li>Survival - A live cell with 2-3 living neighbors will survive</li>
+              <li>Overpopulation- A cell with more than 3 live neighbors will die</li>
+              <li>Reproduction - A dead cell with exactly 3 neighbors will come to life</li>
+            </ul>
+          </section>
+          <section class="about-modes">
+            <div class="about-subheader">Game Modes</div>
+            <p>The game has two modes:</p>
+            <ul>
+              <li>"Its a Wonderful Life" - A black and white implementation, for the purists.</li>
+              <li>"LiteBrite, Britelife" - Nostolgia and aesthetics are important here.</li>
+            </ul>
+            <p>The basic rules are the same for both modes. The "LiteBrite, BriteLife" mode is similar to a common variation on Conway's Game of life called 'Immigration'. In LiteBrite, each cell is randomly assigned a color unless there is a single common color among its neighbors. In this case, the cell will take on that common color.</p>
+
+          </section>
+          <section class="about-controls">
+            <div class="about-subheader">Game Controls</div>
+
+            <div class="">
+              <i class="fas fa-play"></i>
+              <span>Restarts a paused game.</span>
+            </div>
+
+            <div class="">
+              <i class="fas fa-pause"></i>
+              <span>Pauses the game.</span>
+            </div>
+
+            <div class="">
+              <i class="far fa-trash-alt"></i>
+              <span>Clear the grid. Removes all living cells from the board.</span>
+            </div>
+
+            <div class="">
+              <i class="fas fa-plus"></i>
+              <span>Toggles the sidebar, with all the controls described below.</span>
+            </div>
+
+            <div class="">
+              <i class="fas fa-redo-alt"></i>
+              <span>Brings a random number of cells to life.</span>
+            </div>
+
+            <p>The remaining controls all add certain shapes to the grid of cells. Click on each control to activate the shape, then click on the board to add the shape. Try clearing the entire board before adding each shape to get a better idea of how they work.</p>
+
+            <div class="">
+              <i class="fas fa-ellipsis-h"></i>
+              <span>Add a full row of cells to the grid</span>
+            </div>
+
+            <div class="">
+              <i class="fas fa-ellipsis-v"></i>
+              <span>Add a full column of cells to the grid</span>
+            </div>
+
+            <div class="">
+              <i class="far fa-paper-plane"></i>
+              <span>Add a shape known as a "glider"</span>
+            </div>
+
+            <div class="">
+              <i class="fas fa-fighter-jet"></i>
+              <span>Add a shape known as a "Gospel glider gun"</span>
+            </div>
+
+            <div class="">
+              <i class="fas fa-space-shuttle"></i>
+              <span>Add a shape known as a "Copperhead spaceship"</span>
+            </div>
+          </section>
+        </div>
+      </div>
       <div class="title-wrapper">
-        <div class="title animated fadeInDown">
+        <div class="title">
           <span>Charlie's Life</span>
         </div>
         <div class="start animated fadeInDown" id="start">
