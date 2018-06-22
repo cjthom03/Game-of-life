@@ -11,7 +11,7 @@ In this game, cells can have 2 states - alive or dead - and they follow 4 simple
 3. Overpopulation - A cell dies if it has more than 3 neighbors
 4. Reproduction - A cell is born if it has exactly 3 living neighbors
 
-In Charlie's life, users will be allowed to modify some of these rules and force state changes for some of the cells on the grid in order to experiment and play with the game.
+In Charlie's Life, users will be allowed to modify some of these rules and force state changes for some of the cells on the grid in order to experiment and play with the game.
 
 ## Functionality
 
@@ -23,21 +23,21 @@ In Charlie's Life, users will be able to:
 * Access a side bar of pre-determined shapes that can be added to the board
 * Access a side bar with more information about how the game works
 
-## Design & Wireframes
+## Design
 
-Charlie's Game will be a single-screen application with a very simple design and UI. The game will consist of a main simulation area, containing around 7,500 cells. The user will click on this area to begin the game.
+Charlie's Life will is a single-screen application with a simple but intuitive design and user interface. The game consist of a main simulation area, containing around 7,500 cells. The user will click on this area to begin the game.
 
-Controls along the bottom of the simulation area will allow the user to pause/play the simulation, speed up or slow down the simulation, toggle between Life and Highlife rules for the game, or clear the board.
-![Game of Life - Main](Assets/GameOfLife_Main.png)
+![Game of Life - Demo](Assets/demo.gif)
 
-Controls in the top right of the screen will allow the user to toggle one of two expandable sidebars. The first, toggled with a '+' icon, allows the use to add live cells to the board: randomly, in a full row, in a full column, or in various pre-constructed shapes - gliders, guns, and spaceships. The second sidebar, toggled with a '?' icon, will explain the game and various controls to the user.
-![Game of Life - Sidebar](Assets/GameOfLife_Sidebar.png)
+Controls along the bottom of the simulation area allow the user to pause/play the simulation, speed up or slow down the simulation, toggle between game modes, or clear the board.
+
+Controls in the top right of the screen will allow the user to either toggle a sidebar with additional controls, or open pop-up window that describes each of the controls in detail. The additional sidebar controls allow the user to add live cells to the board: randomly, in a full row, in a full column, or in various pre-constructed shapes - gliders, guns, and spaceships.
 
 ## Technologies and Architecture
 This project will be implemented with the following technologies:
 * Vanilla Javascript - the game logic and user interactions
 * Webpack - bundle and serve up the scripts
-* Animate.css - Only for sidebar animations
+* Animate.css - Only for title and sidebar animations
 
 In addition to the `bundle.js` entry file served up by webpack, the following scripts will be included:
 
