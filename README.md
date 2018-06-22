@@ -71,6 +71,11 @@ In Charlie's Life, users are able to:
 
 
 ```javascript
+    //If cells are not clustered at all, they will all immediately die
+    //This algorithm chooses random central 'nodes' or cells that must
+    // be a certain distance from one another
+    // Then, clusters a random number of cells that must be a within a
+    // max distance from the central node
     randomClusters() {
       let numCenterCells = Math.floor((Math.random() * 25) + 25);
       let centerCells = [], clusterCells = [];
@@ -108,6 +113,7 @@ In Charlie's Life, users are able to:
           }
         }
       }
+    }
 ```
 
 
