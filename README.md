@@ -1,5 +1,7 @@
 # Charlie's Life
 
+[Live Site](https://cjthom03.github.io/Game-of-life/)
+
 ## Background and overview
 Charlie's Life is an interactive implementation of John Horton Conway's [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
 
